@@ -24,6 +24,7 @@ public class OrderService {
     private ProdutoRepository produtoRepository;
 
     public Order placeOrder(Order order) {
+        double totalAmount = 0;
         
         for (OrderItem item : order.getOrderItems()) {
             Produto product = produtoRepository.findById(item.getProduto().getId())
@@ -35,7 +36,11 @@ public class OrderService {
             
             product.setStock(product.getStock() - item.getQuantity());
             produtoRepository.save(product);
+
+            totalAmount += item.getPrice() * item.getQuantity();
         }
+
+        order.setTotalAmount(totalAmount);
         
         return orderRepository.save(order);
     }

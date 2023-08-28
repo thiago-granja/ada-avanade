@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import jakarta.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,9 @@ import com.avanade.avanade.repository.UserRepository;
 
 @Service
 public class UserService {
+
+    @Autowired
+    private UserRepository userRepository;
     
     private UserRepository repository;
     private PasswordEncoder passwordEncoder;
@@ -21,7 +26,6 @@ public class UserService {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
     }
-
 
     @Transactional
     public UserDTO create(UserDTO dto) {
@@ -50,6 +54,9 @@ public class UserService {
 
     public void delete(Long id) {
         this.repository.deleteById(id);
+    }
 
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

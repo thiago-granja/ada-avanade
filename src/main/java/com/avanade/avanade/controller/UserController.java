@@ -4,7 +4,7 @@ import java.util.List;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-/* import org.springframework.http.ResponseEntity; */
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,8 +31,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public /* ResponseEntity<String> */ UserDTO create(@Valid @RequestBody UserDTO body) {
-/*         return ResponseEntity.status(HttpStatus.CREATED).body("created " + body); */
+    public UserDTO create(@Valid @RequestBody UserDTO body) {
         return service.create(body);
     }
 
@@ -42,7 +41,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDTO> getAll(@RequestParam(/* required = false, */ value = "filter", defaultValue = "") String filter) {
+    public List<UserDTO> getAll(@RequestParam(value = "filter", defaultValue = "") String filter) {
         return service.getAll();
     }
 

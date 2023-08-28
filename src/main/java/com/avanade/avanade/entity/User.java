@@ -43,6 +43,8 @@ public class User implements UserDetails {
         this.cpf = dto.cpf();
         this.email = dto.email();
         this.name = dto.name();
+        this.shippingAddress = dto.shippingAddress();
+        this.phone = dto.phone();
     }
 
 
@@ -52,7 +54,7 @@ public class User implements UserDetails {
     }
 
     public UserDTO dto() {
-        return new UserDTO(this.getName(), this.getCpf(), this.getEmail(), this.username, this.getBirthdate(), this.id);
+        return new UserDTO(this.getName(), this.getCpf(), this.getEmail(), this.username, this.getBirthdate(), this.getPhone(), this.getShippingAddress(), this.id);
     }
 
     @Override

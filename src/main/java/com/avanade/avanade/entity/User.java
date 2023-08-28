@@ -26,6 +26,7 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private String name;
+    @Column(unique = true)
     private String email;
     private String phone;
     private String shippingAddress;
@@ -34,6 +35,7 @@ public class User implements UserDetails {
     private LocalDateTime dataRegistro;
     @UpdateTimestamp
     private LocalDateTime ultimaModDataRegistro;
+    @Column(unique = true)
     private String cpf;
 
     public User(UserDTO dto){
